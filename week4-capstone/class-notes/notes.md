@@ -1181,7 +1181,7 @@ Your Manager Makes a Decision
 
 - **Slack:** `#capstone-help` (instructor response within 4 hours)
 - **Office hours:** Saturday 11 AM–1 PM ET (extended for capstone)
-- **Emergency:** instructor@youracademy.com (only for tech issues)
+- **Emergency:** augamos@live.com (only for tech issues)
 
 ---
 
