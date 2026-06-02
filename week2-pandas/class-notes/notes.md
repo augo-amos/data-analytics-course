@@ -35,7 +35,7 @@ import csv
 total = 0
 with open('sales.csv', 'r') as file:
     reader = csv.reader(file) #csv.reader() function reads an open file object line by line, and splits each line into a list of strings based on the commas
-    next(reader)
+    next(reader) # skip the header row
     for row in reader:
         total += float(row[2]) * int(row[1])
 print(total)
