@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/decodemy_logo_1.PNG" alt="Daystar Analytics Lab Logo" width="400">
+  <img src="assets/decodemy_logo_2.PNG" alt="Daystar Analytics Lab Logo" width="400">
 </div>
 
 ![Pilot Status](https://img.shields.io/badge/pilot-active-brightgreen)
