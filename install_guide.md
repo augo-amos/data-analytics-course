@@ -4,7 +4,7 @@
 **Academy:** Decodemy  
 **Time required:** 35–45 minutes (first time)  
 **Difficulty:** No experience needed – follow every click  
-**Support:** Email: `instructor@decodemy.com` (response within 24 hours)
+**Support:** Email: `augoamos@gmail.com` (response within 24 hours)
 
 ---
 
