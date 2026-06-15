@@ -1,9 +1,9 @@
 # Week 4 Class Notes: Capstone Project
 
-**Course:** Decodemy – Foundations of Data Analytics (Pilot)  
+**Course:** Decodemy – Foundations of Data Analytics  
 **Week:** 4 of 4 (Final Week)  
 **Prerequisites:** Weeks 1, 2, and 3 completed  
-**Instructor:** [Your Name]
+**Instructor:** Amos Augo
 
 ---
 
