@@ -1,6 +1,6 @@
 # Week 4 Class Notes: Capstone Project
 
-**Course:** Foundations of Data Analytics (Pilot)  
+**Course:** Decodemy – Foundations of Data Analytics (Pilot)  
 **Week:** 4 of 4 (Final Week)  
 **Prerequisites:** Weeks 1, 2, and 3 completed  
 **Instructor:** [Your Name]
@@ -10,24 +10,21 @@
 ## Table of Contents
 
 1. [Course Review: Weeks 1-3](#course-review-weeks-1-3)
-   - [Week 1: Python Fundamentals](#week-1-python-fundamentals)
-   - [Week 2: Data Manipulation with Pandas](#week-2-data-manipulation-with-pandas)
-   - [Week 3: Visualization & Tableau](#week-3-visualization--tableau)
 2. [Capstone Project Overview](#capstone-project-overview)
-3. [The New Dataset](#the-new-dataset)
+3. [The New Dataset (5,000 Rows)](#the-new-dataset-5000-rows)
 4. [Step-by-Step Capstone Guide](#step-by-step-capstone-guide)
    - [Step 1: Setup & Initial Exploration](#step-1-setup--initial-exploration)
-   - [Step 2: Data Cleaning](#step-2-data-cleaning)
+   - [Step 2: Data Cleaning (Anticipating Issues)](#step-2-data-cleaning-anticipating-issues)
    - [Step 3: Answer Question 1 (Regional Performance)](#step-3-answer-question-1-regional-performance)
    - [Step 4: Answer Question 2 (Category & Segment Analysis)](#step-4-answer-question-2-category--segment-analysis)
    - [Step 5: Answer Question 3 (Time Trend)](#step-5-answer-question-3-time-trend)
    - [Step 6: Export Cleaned Data](#step-6-export-cleaned-data)
    - [Step 7: Build Tableau Dashboard](#step-7-build-tableau-dashboard)
-   - [Step 8: Record Loom Video](#step-8-record-loom-video)
+   - [Step 8: Record Video Presentation](#step-8-record-video-presentation)
    - [Step 9: Submit via GitHub](#step-9-submit-via-github)
 5. [Grading Rubric](#grading-rubric)
 6. [Common Pitfalls & How to Avoid Them](#common-pitfalls--how-to-avoid-them)
-7. [Sample Solutions](#sample-solutions)
+7. [Expected Outputs & Sample Solutions](#expected-outputs--sample-solutions)
 8. [Time Management Plan](#time-management-plan)
 9. [Final Checklist](#final-checklist)
 10. [Key Takeaways from the Pilot](#key-takeaways-from-the-pilot)
@@ -42,48 +39,13 @@ Before diving into the capstone, let's review what you've learned. **You will ne
 
 **What you learned:**
 - Variables and data types (int, float, str, bool)
-- Lists and list operations (indexing, slicing, appending)
+- Lists and list operations
 - Loops (`for` and `while`)
 - Conditionals (`if`/`elif`/`else`)
 - Functions (`def`, parameters, `return`)
 - Reading CSV files with Python's `csv` module
 
-**Key syntax reminder:**
-```python
-# Variables
-name = "Data"
-price = 19.99
-
-# Lists
-items = [1, 2, 3]
-items.append(4)
-
-# Loops
-for item in items:
-    print(item)
-
-# Conditionals
-if price > 100:
-    print("Expensive")
-else:
-    print("Cheap")
-
-# Functions
-def calculate_total(prices):
-    return sum(prices)
-
-# CSV reading
-import csv
-with open('file.csv', 'r') as f:
-    reader = csv.reader(f)
-    next(reader)  # Skip header
-    for row in reader:
-        print(row)
-```
-
-**Why this matters for the capstone:** You'll write functions to organize your cleaning code. You'll use loops implicitly through Pandas (which is built on these concepts).
-
----
+**Why this matters for the capstone:** You'll write functions to organize your cleaning code.
 
 ### Week 2: Data Manipulation with Pandas
 
@@ -91,96 +53,23 @@ with open('file.csv', 'r') as f:
 - Series and DataFrames
 - Reading data: `pd.read_csv()`
 - Exploring data: `.head()`, `.info()`, `.describe()`
-- Selecting columns: `df['col']`
-- Filtering rows: `df[df['col'] > value]`
+- Selecting columns and filtering rows
 - Handling missing values: `.isnull()`, `.fillna()`, `.dropna()`
 - Grouping and aggregation: `.groupby()`, `.agg()`
-- Merging DataFrames: `pd.merge()`
 - Exporting data: `.to_csv()`
 
-**Key syntax reminder:**
-```python
-import pandas as pd
-
-# Read data
-df = pd.read_csv('data.csv')
-
-# Explore
-print(df.head())
-print(df.info())
-print(df.isnull().sum())
-
-# Clean
-df['col'] = df['col'].fillna(df['col'].median())
-df['category'] = df['category'].str.title()
-
-# Filter
-high_sales = df[df['sales'] > 1000]
-
-# Group and aggregate
-summary = df.groupby('region')['profit'].sum()
-
-# Merge
-merged = pd.merge(df1, df2, on='key')
-
-# Export
-df.to_csv('clean.csv', index=False)
-```
-
 **Why this matters for the capstone:** **This is the most important week for the capstone.** You'll spend 60% of your time cleaning the new dataset with Pandas.
-
----
 
 ### Week 3: Visualization & Tableau
 
 **What you learned:**
+- Matplotlib and Seaborn for Python charts
+- Tableau for interactive dashboards
+- Building bar charts, line charts, scatter plots
+- Creating calculated fields and filters
+- Publishing dashboards to Tableau Public
 
-**Python (Matplotlib/Seaborn):**
-- Line plots: `plt.plot()`
-- Bar charts: `plt.bar()` or `sns.barplot()`
-- Scatter plots: `plt.scatter()` or `sns.scatterplot()`
-- Histograms: `plt.hist()` or `sns.histplot()`
-- Customization: titles, labels, colors, legends
-
-**Tableau:**
-- Connecting to CSV files
-- Dimensions (blue) vs Measures (green)
-- Building bar charts, line charts, scatter plots, maps
-- Creating calculated fields
-- Building dashboards with multiple sheets
-- Adding filters and dashboard actions
-- Publishing to Tableau Public
-
-**Key syntax reminder (Python):**
-```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Bar chart
-sns.barplot(data=df, x='region', y='profit', estimator=sum)
-plt.title('Profit by Region')
-plt.show()
-
-# Line chart
-plt.plot(dates, profits)
-plt.xlabel('Date')
-plt.ylabel('Profit')
-plt.show()
-
-# Scatter plot
-sns.scatterplot(data=df, x='sales', y='profit', hue='region')
-plt.show()
-```
-
-**Key actions reminder (Tableau):**
-- Drag dimension to Columns, measure to Rows = bar chart
-- Drag date to Columns, measure to Rows = line chart
-- Drag region to Color = color-coded by region
-- Right-click date → Month/Week/Day = change granularity
-- Drag field to Filters = add filter
-- New Dashboard → drag sheets = build dashboard
-
-**Why this matters for the capstone:** You'll create Python charts for exploration (not required but recommended) and a Tableau dashboard for the final deliverable.
+**Why this matters for the capstone:** You'll create Python charts for exploration and a Tableau dashboard for the final deliverable.
 
 ---
 
@@ -188,19 +77,20 @@ plt.show()
 
 ### The Scenario
 
-You are a junior data analyst at **ShopFast**, an online retailer selling electronics, furniture, and office supplies. Your manager, Alex, needs a clear picture of sales performance across regions and customer segments.
+You are a junior data analyst at **ShopFast**, an online retailer selling electronics, furniture, and office supplies. Your manager needs a clear picture of sales performance across regions and customer segments.
 
 ### The Dataset
 
-You receive `online_orders.csv` with 5,000 orders. The data is **intentionally messy** – just like real employer data.
+You receive `online_orders.csv` with **5,000 orders**. The data is **intentionally messy** – just like real employer data.
 
-**Known issues:**
-- 200 missing profit values
-- 50 dates in wrong format
-- Inconsistent category names ("Electronics", "electronics", "ELECTRONICS")
-- 15 missing region values
-- 20 rows with negative or zero quantity (data errors)
-- 5 rows with "Small Business" segment (not in expected list)
+| Issue | Expected Count | How to Identify |
+|-------|----------------|-----------------|
+| Missing profit values | ~200 | `df['profit'].isnull().sum()` |
+| Wrong date format | ~50 | Dates like `01/16/2024` instead of `2024-01-16` |
+| Missing region values | ~15 | Empty string in region column |
+| Negative/zero quantity | ~20 | `df['quantity'] <= 0` |
+| "Small Business" segment | ~5 | `df['customer_segment'] == 'Small Business'` |
+| Inconsistent category casing | ~100 | Mix of "Electronics", "electronics", "ELECTRONICS" |
 
 ### The Three Questions You Must Answer
 
@@ -217,11 +107,11 @@ You receive `online_orders.csv` with 5,000 orders. The data is **intentionally m
 | 1 | Jupyter Notebook (cleaning + analysis + Q1-Q3) | `.ipynb` | 40% |
 | 2 | Cleaned CSV | `.csv` | 10% |
 | 3 | Tableau Dashboard (2 pages) | Public URL | 30% |
-| 4 | Loom Video (3-5 min presentation) | URL | 20% |
+| 4 | Video Presentation (3-5 min) | URL | 20% |
 
 ---
 
-## The New Dataset
+## The New Dataset (5,000 Rows)
 
 ### File Location
 ```
@@ -230,28 +120,46 @@ week4-capstone/data/online_orders.csv
 
 ### Column Descriptions
 
-| Column | Type | Description | Issues |
-|--------|------|-------------|--------|
+| Column | Type | Description | Issues to Expect |
+|--------|------|-------------|------------------|
 | `order_id` | int | Unique ID | None |
-| `order_date` | string | YYYY-MM-DD or MM/DD/YYYY | 50 wrong format |
-| `region` | string | North, South, East, West | 15 missing |
-| `category` | string | Electronics, Furniture, Office Supplies | Inconsistent casing |
-| `customer_segment` | string | Consumer, Corporate, Home Office | 5 have "Small Business" |
+| `order_date` | object | Order date | 50 rows in MM/DD/YYYY format |
+| `region` | object | North, South, East, West | 15 missing (empty strings) |
+| `category` | object | Electronics, Furniture, Office Supplies | Inconsistent casing |
+| `customer_segment` | object | Consumer, Corporate, Home Office | 5 "Small Business" values |
 | `sales` | float | Total sale amount | None |
 | `profit` | float | Profit (can be negative) | 200 missing (NaN) |
-| `quantity` | int | Number of items | 20 have ≤ 0 |
+| `quantity` | int | Number of items | 20 rows with ≤ 0 |
 
 ### First Look (Run This Yourself)
 
 ```python
 import pandas as pd
 
-df = pd.read_csv('week4-capstone/data/online_orders.csv')
+df = pd.read_csv('../data/online_orders.csv')
 
 print(f"Shape: {df.shape}")
 print(f"\nMissing values:\n{df.isnull().sum()}")
 print(f"\nFirst 5 rows:\n{df.head()}")
-print(f"\nData types:\n{df.dtypes}")
+print(f"\nUnique categories:\n{df['category'].unique()}")
+```
+
+**Expected output after running:**
+```
+Shape: (5000, 8)
+
+Missing values:
+order_id             0
+order_date           0
+region              15
+category             0
+customer_segment     0
+sales                0
+profit             200
+quantity             0
+
+Unique categories:
+['Electronics' 'electronics' 'ELECTRONICS' 'Furniture' 'Office Supplies']
 ```
 
 ---
@@ -272,136 +180,191 @@ import seaborn as sns
 # Set style for better looking plots
 sns.set_style('whitegrid')
 plt.rcParams['figure.figsize'] = (10, 6)
+
+print("Libraries imported successfully!")
 ```
 
 **Cell 2: Load data**
 ```python
 df = pd.read_csv('../data/online_orders.csv')
-print("Data loaded successfully!")
+print(f"Data loaded: {df.shape[0]} rows, {df.shape[1]} columns")
 ```
 
 **Cell 3: Initial exploration**
 ```python
-# Shape
-print(f"Rows: {df.shape[0]}, Columns: {df.shape[1]}")
+# First 5 rows
+print("=== FIRST 5 ROWS ===")
+print(df.head())
 
-# Column names
-print(f"\nColumns:\n{df.columns.tolist()}")
-
-# Data types and missing
-print(f"\nInfo:")
-df.info()
-
-# Statistical summary
-print(f"\nDescribe:")
-df.describe()
+# Data types and missing values
+print("\n=== DATA TYPES & MISSING VALUES ===")
+print(df.info())
 
 # Missing values count
-print(f"\nMissing values per column:")
+print("\n=== MISSING VALUES COUNT ===")
 print(df.isnull().sum())
 
+# Statistical summary
+print("\n=== STATISTICAL SUMMARY ===")
+print(df.describe())
+
 # Unique values in categorical columns
-print(f"\nUnique regions: {df['region'].unique()}")
-print(f"Unique categories: {df['category'].unique()}")
-print(f"Unique segments: {df['customer_segment'].unique()}")
+print("\n=== UNIQUE VALUES ===")
+print(f"Regions: {df['region'].unique()[:10]}")  # Show first 10
+print(f"Categories: {df['category'].unique()}")
+print(f"Segments: {df['customer_segment'].unique()}")
 ```
 
-**Expected findings:**
+**What students should discover:**
 - 5,000 rows, 8 columns
-- Missing: profit (200), region (15)
-- Inconsistent: category casing, date format
-- Invalid: negative quantity, "Small Business" segment
+- 200 missing profit values (4% of data)
+- 15 missing region values
+- Inconsistent category casing (3 variations of "Electronics")
+- "Small Business" segment (not in standard list)
+- Date column is object type (needs conversion)
 
 ---
 
-### Step 2: Data Cleaning
+### Step 2: Data Cleaning (Anticipating Issues)
 
-**Cell 4: Create a clean dataset (copy to avoid warnings)**
+**Cell 4: Create working copy**
 ```python
 df_clean = df.copy()
-print(f"Working with {len(df_clean)} rows")
+print(f"Starting with {len(df_clean)} rows")
 ```
 
-**Cell 5: Fix column names (remove spaces, lowercase)**
+**Issue 1: Column names with spaces (if any)**
 ```python
+# Check for spaces in column names
+print("Original column names:", df_clean.columns.tolist())
+
+# Fix: replace spaces with underscores and lowercase
 df_clean.columns = df_clean.columns.str.lower().str.replace(' ', '_')
-print(df_clean.columns.tolist())
+print("Fixed column names:", df_clean.columns.tolist())
 ```
 
-**Cell 6: Convert order_date to datetime**
+**Issue 2: Wrong date formats (~50 rows)**
 ```python
-# Convert (errors become NaT - Not a Time)
+# Check current date format sample
+print("Sample dates before conversion:")
+print(df_clean['order_date'].head(10))
+
+# Convert to datetime (errors become NaT)
 df_clean['order_date'] = pd.to_datetime(df_clean['order_date'], errors='coerce')
 
-# Check how many failed conversion
+# Count how many failed
 failed_dates = df_clean['order_date'].isnull().sum()
 print(f"Failed date conversions: {failed_dates}")
 
-# Drop rows where date conversion failed (50 rows)
+# Drop rows where date conversion failed (the ~50 wrong format rows)
 df_clean = df_clean.dropna(subset=['order_date'])
 print(f"Rows after fixing dates: {len(df_clean)}")
+
+# Verify dates are now correct
+print("Sample dates after conversion:")
+print(df_clean['order_date'].head(10))
 ```
 
-**Cell 7: Fix missing region values**
+**What students will see:**
+- Some dates like `01/16/2024` will fail conversion
+- Approximately 50 rows will be dropped
+- Remaining dates are in proper datetime format
+
+**Issue 3: Missing region values (~15 rows)**
 ```python
 # Check missing regions
-print(f"Missing regions before: {df_clean['region'].isnull().sum()}")
+missing_before = df_clean['region'].isnull().sum()
+print(f"Missing regions before: {missing_before}")
 
-# Option 1: Fill with 'Unknown' (or drop if few)
+# Show sample of missing region rows
+print("\nRows with missing region:")
+print(df_clean[df_clean['region'].isnull()].head())
+
+# Option 1: Fill with 'Unknown' (recommended for only 15 rows)
 df_clean['region'] = df_clean['region'].fillna('Unknown')
 
-# Option 2: Drop missing regions if <5% (your choice)
-# df_clean = df_clean.dropna(subset=['region'])
-
-print(f"Missing regions after: {df_clean['region'].isnull().sum()}")
+# Verify
+print(f"\nMissing regions after: {df_clean['region'].isnull().sum()}")
+print(f"Unique regions now: {df_clean['region'].unique()}")
 ```
 
-**Cell 8: Fix inconsistent category names**
+**Issue 4: Inconsistent category casing (~100 rows)**
 ```python
-# Before
-print(f"Unique categories before: {df_clean['category'].unique()}")
+# Check unique categories before fixing
+print("Unique categories BEFORE:")
+print(df_clean['category'].unique())
 
-# Convert to title case (first letter capital, rest lowercase)
+# Show sample of inconsistent categories
+print("\nSample of inconsistent category rows:")
+print(df_clean[df_clean['category'].str.contains('Electronics', case=False, na=False)].head(10))
+
+# Fix: convert to title case (first letter capital, rest lowercase)
 df_clean['category'] = df_clean['category'].str.title()
 
-# After
-print(f"Unique categories after: {df_clean['category'].unique()}")
+# Verify
+print("\nUnique categories AFTER:")
+print(df_clean['category'].unique())
 ```
 
-**Cell 9: Fix customer_segment (map 'Small Business' to 'Corporate' or create new)**
+**Issue 5: "Small Business" segment (~5 rows)**
 ```python
-# Before
-print(f"Unique segments before: {df_clean['customer_segment'].unique()}")
+# Check segments before
+print("Unique segments BEFORE:")
+print(df_clean['customer_segment'].unique())
 
-# Map 'Small Business' to 'Corporate' (or keep as separate)
+# Count Small Business rows
+small_biz_count = (df_clean['customer_segment'] == 'Small Business').sum()
+print(f"Rows with 'Small Business': {small_biz_count}")
+
+# Show sample
+print("\nSample of Small Business rows:")
+print(df_clean[df_clean['customer_segment'] == 'Small Business'].head())
+
+# Create mapping dictionary
 segment_map = {
     'Consumer': 'Consumer',
     'Corporate': 'Corporate',
     'Home Office': 'Home Office',
     'Small Business': 'Corporate'  # Map to Corporate
 }
+
+# Apply mapping
 df_clean['customer_segment'] = df_clean['customer_segment'].map(segment_map)
 
-# After
-print(f"Unique segments after: {df_clean['customer_segment'].unique()}")
+# Verify
+print("\nUnique segments AFTER:")
+print(df_clean['customer_segment'].unique())
 ```
 
-**Cell 10: Remove negative or zero quantity**
+**Issue 6: Negative or zero quantity (~20 rows)**
 ```python
-# Before
+# Check quantity issues
 print(f"Rows with quantity <= 0: {(df_clean['quantity'] <= 0).sum()}")
 
-# Remove
+# Show sample of bad quantity rows
+print("\nSample of rows with quantity <= 0:")
+print(df_clean[df_clean['quantity'] <= 0].head(10))
+
+# Remove bad quantity rows
 df_clean = df_clean[df_clean['quantity'] > 0]
 
-print(f"Rows after removing bad quantity: {len(df_clean)}")
+print(f"\nRows after removing bad quantity: {len(df_clean)}")
 ```
 
-**Cell 11: Handle missing profit values (most important cleaning step)**
+**Issue 7: Missing profit values (~200 rows) – MOST IMPORTANT**
 ```python
-# Check missing profit count
-missing_profit = df_clean['profit'].isnull().sum()
-print(f"Missing profit values: {missing_profit}")
+# Check missing profit
+missing_profit_before = df_clean['profit'].isnull().sum()
+print(f"Missing profit values before: {missing_profit_before}")
+
+# Show sample of missing profit rows
+print("\nSample of rows with missing profit:")
+print(df_clean[df_clean['profit'].isnull()].head(10))
+
+# Calculate median profit by category (for filling)
+category_medians = df_clean.groupby('category')['profit'].median()
+print("\nMedian profit by category:")
+print(category_medians)
 
 # Fill missing profit with median profit of that category
 df_clean['profit'] = df_clean.groupby('category')['profit'].transform(
@@ -409,27 +372,51 @@ df_clean['profit'] = df_clean.groupby('category')['profit'].transform(
 )
 
 # Verify no more missing
-print(f"Missing profit after fill: {df_clean['profit'].isnull().sum()}")
+print(f"\nMissing profit after fill: {df_clean['profit'].isnull().sum()}")
 ```
 
-**Cell 12: Remove duplicates if any**
+**Issue 8: Duplicate rows (if any)**
 ```python
+# Check for duplicates
 duplicates = df_clean.duplicated().sum()
 print(f"Duplicate rows: {duplicates}")
 
-df_clean = df_clean.drop_duplicates()
-print(f"Rows after deduplication: {len(df_clean)}")
+if duplicates > 0:
+    df_clean = df_clean.drop_duplicates()
+    print(f"Rows after deduplication: {len(df_clean)}")
+else:
+    print("No duplicates found.")
 ```
 
 **Cell 13: Verify cleaning was successful**
 ```python
 print("=== CLEANING VERIFICATION ===")
-print(f"Final row count: {len(df_clean)}")
-print(f"\nMissing values:\n{df_clean.isnull().sum()}")
-print(f"\nData types:\n{df_clean.dtypes}")
-print(f"\nSample of cleaned data:")
+print(f"Original rows: {len(df)}")
+print(f"Final rows: {len(df_clean)}")
+print(f"Rows removed: {len(df) - len(df_clean)}")
+
+print("\n=== MISSING VALUES AFTER CLEANING ===")
+print(df_clean.isnull().sum())
+
+print("\n=== DATA TYPES AFTER CLEANING ===")
+print(df_clean.dtypes)
+
+print("\n=== UNIQUE VALUES AFTER CLEANING ===")
+print(f"Regions: {df_clean['region'].unique()}")
+print(f"Categories: {df_clean['category'].unique()}")
+print(f"Segments: {df_clean['customer_segment'].unique()}")
+
+print("\n=== SAMPLE OF CLEANED DATA ===")
 df_clean.head()
 ```
+
+**Expected cleaning results:**
+- Original: 5,000 rows
+- After removing bad dates (~50), bad quantity (~20), duplicates (~5): ~4,925 rows
+- No missing values in any column
+- All categories in title case
+- All segments standardized
+- All dates in datetime format
 
 ---
 
@@ -439,7 +426,7 @@ df_clean.head()
 
 **Cell 14: Calculate total profit by region**
 ```python
-# Group by region and sum profit
+# Group by region and sum profit, sort descending
 profit_by_region = df_clean.groupby('region')['profit'].sum().sort_values(ascending=False)
 
 print("=== PROFIT BY REGION ===")
@@ -451,43 +438,77 @@ highest_profit = profit_by_region.iloc[0]
 lowest_region = profit_by_region.index[-1]
 lowest_profit = profit_by_region.iloc[-1]
 
-print(f"\nHighest profit: {highest_region} with ${highest_profit:,.2f}")
-print(f"Lowest profit: {lowest_region} with ${lowest_profit:,.2f}")
+print(f"\n🏆 Highest profit: {highest_region} with ${highest_profit:,.2f}")
+print(f"⚠️ Lowest profit: {lowest_region} with ${lowest_profit:,.2f}")
 ```
 
-**Cell 15: Create bar chart**
+**Cell 15: Create bar chart (Matplotlib)**
 ```python
-# Create bar chart
+# Create bar chart with custom colors
 plt.figure(figsize=(10, 6))
+
+# Color bars: green for positive, red for negative
 colors = ['green' if x > 0 else 'red' for x in profit_by_region.values]
-profit_by_region.plot(kind='bar', color=colors)
+
+# Create bars
+bars = plt.bar(profit_by_region.index, profit_by_region.values, color=colors)
+
+# Add horizontal line at zero
+plt.axhline(y=0, color='black', linestyle='-', linewidth=1)
+
+# Labels and title
+plt.title('Total Profit by Region', fontsize=16, fontweight='bold')
+plt.xlabel('Region', fontsize=12)
+plt.ylabel('Total Profit ($)', fontsize=12)
+
+# Add value labels on bars
+for i, (region, profit) in enumerate(profit_by_region.items()):
+    y_offset = 500 if profit > 0 else -3000
+    plt.text(i, profit + y_offset, f'${profit:,.0f}', 
+             ha='center', fontweight='bold', fontsize=10)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Alternative: Create bar chart (Seaborn)**
+```python
+# Alternative using seaborn
+plt.figure(figsize=(10, 6))
+sns.barplot(x=profit_by_region.index, y=profit_by_region.values, 
+            palette=['green' if x > 0 else 'red' for x in profit_by_region.values])
 
 plt.title('Total Profit by Region', fontsize=16, fontweight='bold')
 plt.xlabel('Region', fontsize=12)
 plt.ylabel('Total Profit ($)', fontsize=12)
 plt.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
 
-# Add value labels on bars
-for i, (region, profit) in enumerate(profit_by_region.items()):
-    plt.text(i, profit + (1000 if profit > 0 else -3000), 
-             f'${profit:,.0f}', ha='center', fontweight='bold')
+# Add value labels
+for i, profit in enumerate(profit_by_region.values):
+    plt.text(i, profit + (500 if profit > 0 else -3000), f'${profit:,.0f}', 
+             ha='center', fontweight='bold')
 
 plt.tight_layout()
 plt.show()
 ```
 
-**Cell 16: Write interpretation**
-```python
-# Markdown cell - write your interpretation
-"""
+**Cell 16: Write interpretation (Markdown cell)**
+```markdown
 ## Q1 Interpretation
 
-The {highest_region} region generates the highest total profit at ${highest_profit:,.2f}, 
-which is {profit_difference:,.0f}% higher than the second-ranked region.
+The **North** region generates the highest total profit at **$45,200**, 
+which is 39% higher than the second-ranked West region ($32,500).
 
-The {lowest_region} region shows a net loss of ${abs(lowest_profit):,.2f}, 
-likely due to [explain possible reasons based on data].
-"""
+The **South** region shows a net loss of **-$2,100**, 
+the only region with negative total profit. 
+
+**Possible reasons for South region loss:**
+- Higher shipping costs to this region
+- Different product mix with lower margins
+- More promotional discounts or returns
+
+**Recommendation:** Investigate South region operations to identify 
+profitability drivers and loss sources before expanding further.
 ```
 
 ---
@@ -498,8 +519,12 @@ likely due to [explain possible reasons based on data].
 
 **Cell 17: Filter to Electronics category**
 ```python
+# Filter to Electronics only
 electronics_df = df_clean[df_clean['category'] == 'Electronics'].copy()
-print(f"Electronics orders: {len(electronics_df)} rows")
+
+print(f"Total orders: {len(df_clean)}")
+print(f"Electronics orders: {len(electronics_df)}")
+print(f"Electronics as % of total: {len(electronics_df)/len(df_clean)*100:.1f}%")
 ```
 
 **Cell 18: Calculate average profit by segment**
@@ -514,28 +539,49 @@ print(avg_profit_by_segment)
 highest_segment = avg_profit_by_segment.index[0]
 highest_avg_profit = avg_profit_by_segment.iloc[0]
 
-print(f"\nHighest average profit: {highest_segment} with ${highest_avg_profit:.2f} per order")
+print(f"\n🏆 Highest average profit: {highest_segment} with ${highest_avg_profit:.2f} per order")
 ```
 
-**Cell 19: Create bar chart with error bars**
+**Cell 19: Create bar chart with error bars (Matplotlib)**
 ```python
-# Create bar chart with error bars (standard deviation)
-plt.figure(figsize=(10, 6))
-
-# Calculate mean and std for each segment
+# Calculate statistics for error bars
 segment_stats = electronics_df.groupby('customer_segment')['profit'].agg(['mean', 'std', 'count']).reset_index()
 
-# Create bar plot
-sns.barplot(data=segment_stats, x='customer_segment', y='mean', 
-            yerr=segment_stats['std'], capsize=5, palette='viridis')
+# Create bar chart with error bars
+plt.figure(figsize=(10, 6))
 
-plt.title('Average Profit per Order by Customer Segment (Electronics Only)', fontsize=14, fontweight='bold')
+# Create bars
+bars = plt.bar(segment_stats['customer_segment'], segment_stats['mean'], 
+               yerr=segment_stats['std'], capsize=5, 
+               color=['#2ecc71', '#3498db', '#9b59b6'])
+
+# Labels and title
+plt.title('Average Profit per Order by Customer Segment\n(Electronics Only)', 
+          fontsize=14, fontweight='bold')
 plt.xlabel('Customer Segment', fontsize=12)
 plt.ylabel('Average Profit ($)', fontsize=12)
 
 # Add value labels
 for i, row in segment_stats.iterrows():
-    plt.text(i, row['mean'] + 2, f'${row["mean"]:.2f}', ha='center', fontweight='bold')
+    plt.text(i, row['mean'] + 2, f'${row["mean"]:.2f}', 
+             ha='center', fontweight='bold', fontsize=11)
+
+plt.tight_layout()
+plt.show()
+```
+
+**Alternative: Create bar chart with error bars (Seaborn)**
+```python
+# Alternative using seaborn
+plt.figure(figsize=(10, 6))
+
+sns.barplot(data=electronics_df, x='customer_segment', y='profit', 
+            errorbar='sd', capsize=5, palette='viridis')
+
+plt.title('Average Profit per Order by Customer Segment\n(Electronics Only)', 
+          fontsize=14, fontweight='bold')
+plt.xlabel('Customer Segment', fontsize=12)
+plt.ylabel('Average Profit ($)', fontsize=12)
 
 plt.tight_layout()
 plt.show()
@@ -543,33 +589,44 @@ plt.show()
 
 **Cell 20: Create summary table**
 ```python
-# Create formatted table
+# Create detailed summary table
 summary_table = electronics_df.groupby('customer_segment').agg({
-    'profit': ['mean', 'median', 'count', 'sum']
+    'profit': ['mean', 'median', 'count', 'sum', 'std']
 }).round(2)
 
-# Rename columns
-summary_table.columns = ['Avg Profit', 'Median Profit', 'Number of Orders', 'Total Profit']
+# Rename columns for readability
+summary_table.columns = ['Avg Profit', 'Median Profit', 'Order Count', 'Total Profit', 'Std Dev']
+
+# Format as currency
 summary_table['Avg Profit'] = summary_table['Avg Profit'].apply(lambda x: f'${x:.2f}')
 summary_table['Median Profit'] = summary_table['Median Profit'].apply(lambda x: f'${x:.2f}')
 summary_table['Total Profit'] = summary_table['Total Profit'].apply(lambda x: f'${x:,.2f}')
 
-print("=== SUMMARY TABLE (Electronics Only) ===")
+print("=== DETAILED SUMMARY TABLE (Electronics Only) ===")
 print(summary_table)
 ```
 
-**Cell 21: Write interpretation**
-```python
-"""
+**Cell 21: Write interpretation (Markdown cell)**
+```markdown
 ## Q2 Interpretation
 
-Within the Electronics category, the {highest_segment} segment has the highest average profit 
-per order at ${highest_avg_profit:.2f}.
+Within the Electronics category, the **Corporate** segment has the highest 
+average profit per order at **$87.50**.
 
-This is {percent_higher:.0f}% higher than the next highest segment.
+**Key findings:**
+- Corporate customers ($87.50) spend **107% more** per order than Consumer ($42.30)
+- Corporate customers ($87.50) spend **129% more** per order than Home Office ($38.20)
+- Corporate segment also has the highest total profit ($12,250) and largest order count (140)
 
-Possible reasons: [Corporate customers may buy in bulk, higher-end products, etc.]
-"""
+**Why Corporate customers are more profitable:**
+- Likely purchasing higher-end electronics (laptops, monitors)
+- Buying in bulk (higher quantity per order)
+- Less price-sensitive than consumers
+
+**Recommendation:** 
+1. Develop targeted marketing campaigns for Corporate customers
+2. Consider a Corporate loyalty program
+3. Investigate what drives Corporate purchases to replicate for other segments
 ```
 
 ---
@@ -580,7 +637,9 @@ Possible reasons: [Corporate customers may buy in bulk, higher-end products, etc
 
 **Cell 22: Prepare time series data**
 ```python
-# Ensure order_date is datetime (already done in cleaning)
+# Ensure order_date is datetime (should be after cleaning)
+print(f"order_date type: {df_clean['order_date'].dtype}")
+
 # Set date as index for time series operations
 df_time = df_clean.set_index('order_date')
 
@@ -588,33 +647,37 @@ df_time = df_clean.set_index('order_date')
 daily_profit = df_time.groupby(df_time.index)['profit'].sum()
 
 print(f"Date range: {daily_profit.index.min()} to {daily_profit.index.max()}")
-print(f"Number of days: {len(daily_profit)}")
+print(f"Number of days with data: {len(daily_profit)}")
+print(f"Total profit over period: ${daily_profit.sum():,.2f}")
 ```
 
 **Cell 23: Create line plot with trend line**
 ```python
-# Create figure
+from scipy import stats
+
 plt.figure(figsize=(12, 6))
 
 # Plot daily profit (semi-transparent)
-plt.plot(daily_profit.index, daily_profit.values, alpha=0.3, label='Daily Profit', linewidth=1)
+plt.plot(daily_profit.index, daily_profit.values, 
+         alpha=0.3, label='Daily Profit', linewidth=1, color='blue')
 
 # Add 7-day rolling average
 rolling_avg = daily_profit.rolling(window=7).mean()
-plt.plot(rolling_avg.index, rolling_avg.values, color='red', linewidth=2, label='7-Day Rolling Average')
+plt.plot(rolling_avg.index, rolling_avg.values, 
+         color='red', linewidth=2, label='7-Day Rolling Average')
 
 # Add trend line (linear regression)
-from scipy import stats
 x_numeric = np.arange(len(daily_profit))
 slope, intercept, r_value, p_value, std_err = stats.linregress(x_numeric, daily_profit.values)
 trend_line = intercept + slope * x_numeric
-plt.plot(daily_profit.index, trend_line, 'g--', linewidth=2, label=f'Trend Line (slope: ${slope:.2f}/day)')
+plt.plot(daily_profit.index, trend_line, 'g--', linewidth=2, 
+         label=f'Trend Line (slope: ${slope:.2f}/day)')
 
 # Formatting
-plt.title('Profit Trend Over Time', fontsize=16, fontweight='bold')
+plt.title('Profit Trend Over Time (January - March 2024)', fontsize=16, fontweight='bold')
 plt.xlabel('Date', fontsize=12)
 plt.ylabel('Daily Profit ($)', fontsize=12)
-plt.legend()
+plt.legend(loc='upper left')
 plt.axhline(y=0, color='gray', linestyle='-', linewidth=0.5)
 plt.xticks(rotation=45)
 plt.tight_layout()
@@ -622,44 +685,64 @@ plt.show()
 
 # Determine trend direction
 if slope > 0:
-    trend_direction = "upward"
-    trend_icon = "📈"
+    trend_direction = "upward 📈"
 elif slope < 0:
-    trend_direction = "downward"
-    trend_icon = "📉"
+    trend_direction = "downward 📉"
 else:
-    trend_direction = "flat"
-    trend_icon = "➡️"
+    trend_direction = "flat ➡️"
 
-print(f"{trend_icon} Profit trend is {trend_direction} with slope of ${slope:.2f} per day")
+print(f"Trend direction: {trend_direction}")
+print(f"Slope: ${slope:.2f} per day")
+print(f"R-squared: {r_value**2:.3f} ({(r_value**2)*100:.1f}% of variance explained)")
 ```
 
-**Cell 24: Calculate percentage change**
+**Cell 24: Calculate monthly comparison**
 ```python
-# Calculate total profit first month vs last month
-first_month = daily_profit[daily_profit.index < '2024-02-01'].sum()
-last_month = daily_profit[daily_profit.index >= '2024-03-01'].sum()
-percent_change = ((last_month - first_month) / first_month) * 100
+# Extract month from date
+df_clean['month'] = df_clean['order_date'].dt.month
 
-print(f"First month (Jan) profit: ${first_month:,.2f}")
-print(f"Last month (Mar) profit: ${last_month:,.2f}")
-print(f"Change: {percent_change:+.1f}%")
+# Calculate monthly profit
+monthly_profit = df_clean.groupby('month')['profit'].sum()
+month_names = {1: 'January', 2: 'February', 3: 'March'}
+
+print("=== MONTHLY PROFIT COMPARISON ===")
+for month in [1, 2, 3]:
+    if month in monthly_profit.index:
+        profit_value = monthly_profit[month]
+        print(f"{month_names[month]}: ${profit_value:,.2f}")
+
+# Calculate percentage change (Jan to Mar)
+if 1 in monthly_profit.index and 3 in monthly_profit.index:
+    jan_profit = monthly_profit[1]
+    mar_profit = monthly_profit[3]
+    percent_change = ((mar_profit - jan_profit) / jan_profit) * 100
+    print(f"\nJanuary to March change: {percent_change:+.1f}%")
 ```
 
-**Cell 25: Write interpretation**
-```python
-"""
+**Cell 25: Write interpretation (Markdown cell)**
+```markdown
 ## Q3 Interpretation
 
-Over the 3-month period from January to March 2024, profit shows a {trend_direction} trend 
-with a slope of ${slope:.2f} per day.
+Over the 3-month period from January to March 2024, profit shows an **upward trend** 
+with a slope of **$12.45 per day**.
 
-The first month (January) generated ${first_month:,.2f} in profit, 
-while the last month (March) generated ${last_month:,.2f}, 
-representing a {percent_change:+.1f}% change.
+**Key metrics:**
+- January profit: $8,450
+- March profit: $12,890
+- Total growth: **+52.5%**
 
-[Possible explanations: seasonal effects, marketing campaigns, new products, etc.]
-"""
+**Observations:**
+- The 7-day rolling average shows increasing momentum after mid-February
+- The trend line explains approximately 68% of the variance (R² = 0.68)
+- Daily profit became consistently positive after February 20th
+
+**Potential drivers:**
+- Post-holiday sales recovery
+- Successful marketing campaigns launched in February
+- Seasonal demand for Electronics (new product releases)
+
+**Recommendation:** Continue the momentum by analyzing what changed in February 
+and replicating those strategies in other regions or product categories.
 ```
 
 ---
@@ -670,178 +753,125 @@ representing a {percent_change:+.1f}% change.
 ```python
 # Export to CSV (no index column)
 df_clean.to_csv('cleaned_online_orders.csv', index=False)
-print("Cleaned data saved to 'cleaned_online_orders.csv'")
+print("✅ Cleaned data saved to 'cleaned_online_orders.csv'")
 print(f"Export shape: {df_clean.shape}")
+print(f"Export columns: {df_clean.columns.tolist()}")
 ```
 
 ---
 
 ### Step 7: Build Tableau Dashboard
 
-**Now switch to Tableau Public.** Use the exported `cleaned_online_orders.csv`.
+Now switch to **Tableau Public**. Use the exported `cleaned_online_orders.csv`.
 
 #### Dashboard Page 1: Executive Summary
 
 **Sheets to create:**
 
-**Sheet 1: KPI - Total Sales**
-- Create calculated field: `SUM([sales])`
-- Format as currency
-- Add to dashboard as text
-
-**Sheet 2: KPI - Total Profit**
-- Create calculated field: `SUM([profit])`
-- Format as currency (red if negative)
-
-**Sheet 3: KPI - Average Profit per Order**
-- Create calculated field: `AVG([profit])`
-- Format as currency
-
-**Sheet 4: Profit by Region (Bar Chart)**
-- Drag `region` to Columns
-- Drag `profit` to Rows
-- Sort descending
-- Color: green for positive, red for negative
-
-**Sheet 5: Sales by Category (Bar Chart)**
-- Drag `category` to Columns
-- Drag `sales` to Rows
-- Sort descending
-
-**Sheet 6: Date Range Filter**
-- Drag `order_date` to Filters
-- Choose "Range of dates"
-- Show filter
+| Sheet Name | Instructions |
+|------------|--------------|
+| **KPI - Total Sales** | Create calculated field: `SUM([sales])` → Format as currency → Add to dashboard |
+| **KPI - Total Profit** | Create calculated field: `SUM([profit])` → Format as currency |
+| **KPI - Avg Profit/Order** | Create calculated field: `AVG([profit])` → Format as currency |
+| **Profit by Region** | Drag `region` to Columns, `profit` to Rows → Sort descending → Color: green if positive, red if negative |
+| **Sales by Category** | Drag `category` to Columns, `sales` to Rows → Sort descending |
+| **Date Range Filter** | Drag `order_date` to Filters → Range of dates → Show filter |
 
 **Dashboard 1 Layout:**
 ```
-┌─────────────────────────────────────────────────────┐
-│  Executive Dashboard - Q1 2024                      │
-├─────────────────────────────────────────────────────┤
-│  [Date Range Filter]                                │
-├──────────────┬──────────────┬──────────────────────┤
-│  Total Sales │ Total Profit │ Avg Profit/Order     │
-│   $XXX,XXX   │   $XX,XXX    │      $XX.XX          │
-├──────────────┴──────────────┴──────────────────────┤
-│                                                     │
-│  Profit by Region           Sales by Category      │
-│  ┌─────────────────┐        ┌─────────────────┐    │
-│  │ ████ North      │        │ ████ Electronics│    │
-│  │ ███ West        │        │ ███ Furniture   │    │
-│  │ ██ East         │        │ ██ Office       │    │
-│  │ █ South (loss)  │        │                 │    │
-│  └─────────────────┘        └─────────────────┘    │
-│                                                     │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│  📊 Executive Dashboard - Q1 2024                               │
+├─────────────────────────────────────────────────────────────────┤
+│  [Date Range Filter: Jan 1, 2024  ────────────  Mar 31, 2024]  │
+├───────────────────┬───────────────────┬─────────────────────────┤
+│                   │                   │                         │
+│   Total Sales     │   Total Profit    │   Avg Profit/Order      │
+│    $412,500       │     $58,450       │       $28.50            │
+│                   │                   │                         │
+├───────────────────┴───────────────────┴─────────────────────────┤
+│                                                                 │
+│  Profit by Region                    Sales by Category          │
+│  ┌─────────────────────────┐          ┌─────────────────────┐    │
+│  │ North     ████████ $45K │          │ Elect. ████████ $180K│    │
+│  │ West      ██████   $32K │          │ Furn.  ██████   $120K│    │
+│  │ East      ████     $18K │          │ Office ████     $90K │    │
+│  │ South     █ (red) -$2K  │          │                     │    │
+│  └─────────────────────────┘          └─────────────────────┘    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-#### Dashboard Page 2: Deep Dive
+#### Dashboard Page 2: Deep Dive Analysis
 
 **Sheets to create:**
 
-**Sheet 7: Profit Over Time (Line Chart)**
-- Drag `order_date` to Columns → right-click → Month
-- Drag `profit` to Rows
-- Add `category` to Color
-
-**Sheet 8: Sales vs Profit (Scatter Plot)**
-- Drag `sales` to Columns
-- Drag `profit` to Rows
-- Drag `region` to Color
-- Drag `quantity` to Size
-
-**Sheet 9: Profit Heatmap by Region & Category**
-- Drag `region` to Rows
-- Drag `category` to Columns
-- Drag `profit` to Color (as SUM)
-- Change mark type to Square
-
-**Sheet 10: Region Filter**
-- Drag `region` to Filters
-- Show as dropdown
+| Sheet Name | Instructions |
+|------------|--------------|
+| **Profit Over Time** | Drag `order_date` to Columns → right-click → Month → Drag `profit` to Rows → Add `category` to Color |
+| **Sales vs Profit** | Drag `sales` to Columns, `profit` to Rows → Drag `region` to Color → Drag `quantity` to Size |
+| **Profit Heatmap** | Drag `region` to Rows, `category` to Columns → Drag `profit` to Color (as SUM) → Change mark type to Square |
+| **Region Filter** | Drag `region` to Filters → Show as dropdown |
 
 **Dashboard 2 Layout:**
 ```
-┌─────────────────────────────────────────────────────┐
-│  Deep Dive Analysis                                 │
-├─────────────────────────────────────────────────────┤
-│  [Region Filter ▼]                                  │
-├─────────────────────────────────────────────────────┤
-│                                                     │
-│  Profit Over Time by Category                       │
-│  ┌─────────────────────────────────────────────┐   │
-│  │     ── Electronics                           │   │
-│  │    ── Furniture                              │   │
-│  │   ── Office Supplies                         │   │
-│  └─────────────────────────────────────────────┘   │
-│                                                     │
-│  Sales vs Profit                Profit Heatmap      │
-│  ┌──────────────────┐          ┌──────────────┐    │
-│  │  •  •            │          │ North  ████  │    │
-│  │    •    •        │          │ East   ██    │    │
-│  │  •    •          │          │ West   ███   │    │
-│  └──────────────────┘          └──────────────┘    │
-│                                                     │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│  🔍 Deep Dive Analysis                                          │
+├─────────────────────────────────────────────────────────────────┤
+│  [Region Filter: All ▼]                                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Profit Over Time by Category                                   │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │     ▲                                                   │   │
+│  │  $60│    ── Electronics                                │   │
+│  │  $40│   ── Furniture                                    │   │
+│  │  $20│  ── Office Supplies                              │   │
+│  │    $└──────────────────────────────────────────────→   │   │
+│  │      Jan    Feb    Mar                                 │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+│  Sales vs Profit                        Profit Heatmap          │
+│  ┌─────────────────────────┐            ┌─────────────────┐    │
+│  │    •  •                 │            │      Elect Furn Off│    │
+│  │  •     •                │            │ North ███ ██  █   │    │
+│  │ •   •    •              │            │ East  ██  ███ █   │    │
+│  │•        •               │            │ West  ███ ██  ██  │    │
+│  └─────────────────────────┘            └─────────────────┘    │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-**Add Dashboard Action:**
+**Add Dashboard Action (Interactivity):**
 1. Dashboard → Actions → Add Action → Filter
-2. Source: Profit by Region (Sheet 4)
-3. Target: All sheets on Page 2
-4. Run action on: Select
+2. Name: `Filter by Region`
+3. Source Sheet: Profit by Region (from Page 1)
+4. Target Sheets: All sheets on Page 2
+5. Run action on: Select
+6. Click OK
 
-**Publish:**
-- File → Save to Tableau Public As...
-- Name: `YourName_Capstone_Dashboard`
-- Copy the share URL
+**Publish to Tableau Public:**
+1. File → Save to Tableau Public As...
+2. Name: `YourName_Capstone_Dashboard`
+3. Click Save
+4. Copy the share URL (looks like: `https://public.tableau.com/views/YourName_Capstone_Dashboard/...`)
 
 ---
 
-### Step 8: Record Loom Video
+### Step 8: Record Video Presentation
 
 **Video structure (3-5 minutes total):**
 
 **Segment 1: Cleaned Data (30 seconds)**
-```
-"Here's my cleaned dataset. I started with 5,000 rows and 200 missing profit values. 
-I filled missing profits with the median profit for each category, fixed 50 date errors, 
-and removed 20 rows with invalid quantities. The final cleaned data has X rows."
-```
-- Show the CSV file open in Excel or Jupyter
+> "Here's my cleaned dataset for the ShopFast capstone project. I started with 5,000 rows of messy order data. The main issues were 200 missing profit values, 50 incorrectly formatted dates, inconsistent category names, 15 missing regions, and 20 rows with negative quantities. After cleaning, I have approximately 4,925 rows. I fixed missing profits by filling with the median profit for each category, converted all dates to datetime format, standardized categories to title case, and removed invalid quantity rows."
 
-**Segment 2: Python Code (1-2 minutes)**
-```
-"Let me show my Python code for Question 2. I filtered to Electronics only, 
-then grouped by customer segment to calculate average profit. 
-The Corporate segment has the highest average at $87.50 per order."
-```
-- Show your Jupyter notebook
-- Point to specific lines of code
-- Explain what the code does (don't just read it)
+**Segment 2: Python Code for Q2 (90 seconds)**
+> "Let me show my Python code for Question 2, which asks which customer segment has the highest average profit for Electronics. First, I filtered the DataFrame to only Electronics category using `df[df['category'] == 'Electronics']`. Then I used `groupby('customer_segment')['profit'].mean()` to calculate average profit per segment. The result shows Corporate customers average $87.50 per order, which is 107% higher than Consumer at $42.30. I also created a bar chart with error bars to visualize the differences and show variability within each segment. The error bars show that Corporate profits are more consistent, while Consumer has wider variation."
 
-**Segment 3: Tableau Dashboard (1-2 minutes)**
-```
-"Here's my Tableau dashboard. On Page 1, you can see profit by region – 
-North is highest at $45,000. When I click on North, the charts on Page 2 update. 
-On the scatter plot, you can see that higher sales don't always mean higher profit."
-```
-- Open your published dashboard
-- Demonstrate a filter or action
-- State one specific insight
+**Segment 3: Tableau Dashboard (90 seconds)**
+> "Here's my Tableau dashboard published online. Page 1 is the Executive Summary. The key takeaway is that the North region generates $45,200 in profit – the highest – while South shows a loss of $2,100. The KPI cards show total sales of $412,000 and average profit per order of $28.50. When I use the date filter, all charts update dynamically. Page 2 is the Deep Dive. I've added a region filter here – when I select North, you can see the profit trend line spikes in February. The scatter plot shows that higher sales don't always mean higher profit – some high-sales orders in the South actually lost money. The heatmap confirms that Electronics drives profit in North and West, but underperforms in South."
 
 **Segment 4: Reflection (30 seconds)**
-```
-"If I had one more week, I would analyze why the South region is losing money, 
-and look at product-level profitability to identify specific items to discontinue."
-```
-
-**Recording tips:**
-- Practice once before recording
-- Speak clearly and slowly
-- Use a script if nervous
-- Close other tabs/applications
-- Test your microphone first
+> "If I had one more week with this data, I would analyze why the South region is losing money. I'd look at shipping costs by region and product-level profitability to identify specific items to discontinue or reprice. I'd also build a simple forecasting model to predict next quarter's profit based on this upward trend. Overall, this project taught me that cleaning data is 80% of the work, but the insights are worth it."
 
 ---
 
@@ -851,7 +881,7 @@ and look at product-level profitability to identify specific items to discontinu
 
 ```bash
 # 1. Navigate to your repo folder
-cd data-analytics-pilot
+cd ~/Desktop/data-analytics-pilot
 
 # 2. Copy your files to submission_template
 cp yourname_capstone.ipynb week4-capstone/submission_template/
@@ -869,12 +899,13 @@ git commit -m "submit capstone - Your Name"
 git push origin main
 
 # 6. Open Pull Request on GitHub
-# - Go to original repo
+# - Go to original repo (github.com/decodemy/data-analytics-pilot)
 # - Click Pull Requests → New Pull Request
-# - Compare across forks
-# - Choose your fork and branch
-# - Add Loom link in description
-# - Submit
+# - Click "compare across forks"
+# - Choose your fork and branch (main)
+# - Add title: "Capstone Submission – Your Name"
+# - Add description with your Loom video link
+# - Click "Create Pull Request"
 ```
 
 ---
@@ -885,12 +916,12 @@ git push origin main
 
 | Category | Points | Excellent (full) | Satisfactory (partial) | Missing (0) |
 |----------|--------|------------------|------------------------|-------------|
-| **Data Cleaning** | 10 | All 5 issues fixed, no data loss | 3-4 issues fixed | 2 or fewer fixed |
+| **Data Cleaning** | 10 | All 6 issues fixed, efficient code | 4-5 issues fixed | 3 or fewer fixed |
 | **Q1: Regional Profit** | 5 | Bar chart + correct interpretation | Chart only | Missing |
 | **Q2: Category/Segment** | 5 | Bar chart + table + interpretation | Chart only | Missing |
 | **Q3: Time Trend** | 5 | Line plot + trend line + conclusion | Plot only | Missing |
 | **Tableau Dashboard** | 10 | 2 pages, filters, actions, professional | 1 page or missing filters | Dashboard missing |
-| **Loom Video** | 5 | Covers 4 segments, clear audio, 3-5 min | Covers 2-3 segments | Video missing |
+| **Video Presentation** | 5 | Covers 4 segments, clear audio, 3-5 min | Covers 2-3 segments | Video missing |
 
 **Passing threshold:** 28/40 (70%)
 
@@ -898,214 +929,140 @@ git push origin main
 
 ## Common Pitfalls & How to Avoid Them
 
-### Pitfall #1: Over-cleaning (spending 4 hours on perfect data)
+### Pitfall #1: Missing profit filled incorrectly
 
-**Problem:** Trying to handle every edge case, every missing value perfectly.
-
-**Solution:** 
-- If <5% of rows have an issue → drop them
-- If >20% have issues → fill with median/mode
-- **Done is better than perfect**
-
-### Pitfall #2: Forgetting to export cleaned CSV
-
-**Problem:** You clean the data in Python but Tableau uses the original messy file.
-
-**Solution:** 
+**Wrong:**
 ```python
-df_clean.to_csv('cleaned_online_orders.csv', index=False)
-```
-Do this IMMEDIATELY after cleaning, before analysis.
-
-### Pitfall #3: Tableau dashboard too cluttered
-
-**Problem:** 10 sheets, 8 filters, 5 colors – users are overwhelmed.
-
-**Solution:**
-- 3-5 sheets per dashboard max
-- 2-3 filters max
-- One clear insight per chart
-- **Less is more**
-
-### Pitfall #4: Loom video too long or too short
-
-**Problem:** 10-minute ramble or 1-minute rushed video.
-
-**Solution:**
-- Write a script (60-90 seconds per segment)
-- Practice once
-- Aim for 4 minutes (safe zone)
-- **Time yourself**
-
-### Pitfall #5: Missing profit filled incorrectly
-
-**Problem:** Filling all missing profit with overall median (ignores category differences).
-
-**Solution:**
-```python
-# Correct - by category
-df['profit'] = df.groupby('category')['profit'].transform(
-    lambda x: x.fillna(x.median())
-)
-
-# Wrong - overall median
 df['profit'] = df['profit'].fillna(df['profit'].median())
 ```
 
-### Pitfall #6: Not handling negative profit in charts
+**Correct:**
+```python
+df['profit'] = df.groupby('category')['profit'].transform(
+    lambda x: x.fillna(x.median())
+)
+```
 
-**Problem:** South region has negative profit, but bar chart shows it as positive bar going up.
+**Why it matters:** Electronics profit margins differ from Office Supplies. Using overall median introduces bias.
 
-**Solution:**
+### Pitfall #2: Forgetting to handle date conversion errors
+
+**Wrong:**
+```python
+df['order_date'] = pd.to_datetime(df['order_date'])  # Fails on wrong formats
+```
+
+**Correct:**
+```python
+df['order_date'] = pd.to_datetime(df['order_date'], errors='coerce')
+df = df.dropna(subset=['order_date'])
+```
+
+### Pitfall #3: Not handling negative profit in charts
+
+**Wrong:** All bars same color (hides loss)
+
+**Correct:**
 ```python
 colors = ['green' if x > 0 else 'red' for x in profit_by_region]
-profit_by_region.plot(kind='bar', color=colors)
 plt.axhline(y=0, color='black')
 ```
 
-### Pitfall #7: Forgetting to set index=False when exporting
+### Pitfall #4: Tableau dashboard too cluttered
 
-**Problem:** CSV has an extra "Unnamed: 0" column.
+**Fix:** 3-5 sheets per dashboard, 2-3 filters max. Less is more.
 
-**Solution:**
-```python
-df.to_csv('clean.csv', index=False)  # Always add index=False
-```
+### Pitfall #5: Forgetting `index=False` when exporting
 
----
+**Wrong:** `df.to_csv('clean.csv')` → adds extra column
 
-## Sample Solutions
+**Correct:** `df.to_csv('clean.csv', index=False)`
 
-### Sample Q1 Answer
+### Pitfall #6: Not handling "Small Business" segment
 
-**Python output:**
-```
-=== PROFIT BY REGION ===
-region
-North     $45,200
-West      $32,500
-East      $18,300
-South     -$2,100
-Name: profit, dtype: int64
-```
+**Wrong:** Leaving as-is or dropping rows
 
-**Interpretation:**
-> The North region generates the highest total profit at $45,200, which is 39% higher than the second-ranked West region ($32,500). The South region shows a net loss of -$2,100, driven by high shipping costs and lower average order values compared to other regions.
-
-You are correct again – the response was **cut off mid-sentence**. Let me complete **Sample Q2 Answer** and finish the rest of the Week 4 Class Notes properly.
+**Correct:** Map to 'Corporate' or create new category
 
 ---
 
-### Sample Q2 Answer 
+## Expected Outputs & Sample Solutions
 
-**Python output:**
-```
-=== AVERAGE PROFIT BY SEGMENT (Electronics Only) ===
-customer_segment
-Corporate       $87.50
-Consumer        $42.30
-Home Office     $38.20
-Name: profit, dtype: float64
-```
+### Expected Q1 Output
 
-**Interpretation:**
-> Within the Electronics category, the Corporate segment has the highest average profit per order at $87.50. This is 107% higher than the Consumer segment ($42.30) and 129% higher than the Home Office segment ($38.20). Corporate customers likely purchase higher-end electronics in larger quantities, driving higher per-order profitability.
+| Region | Total Profit |
+|--------|--------------|
+| North | $45,200 |
+| West | $32,500 |
+| East | $18,300 |
+| South | -$2,100 |
 
----
+### Expected Q2 Output
 
-### Sample Q3 Answer
+| Segment | Avg Profit | Median Profit | Order Count | Total Profit |
+|---------|------------|---------------|-------------|--------------|
+| Corporate | $87.50 | $72.00 | 140 | $12,250 |
+| Consumer | $42.30 | $38.00 | 210 | $8,883 |
+| Home Office | $38.20 | $32.50 | 95 | $3,629 |
 
-**Python output:**
-```
-📈 Profit trend is upward with slope of $12.45 per day
+### Expected Q3 Output
 
-First month (Jan) profit: $8,450.00
-Last month (Mar) profit: $12,890.00
-Change: +52.5%
-```
-
-**Interpretation:**
-> Over the 3-month period from January to March 2024, profit shows an upward trend with a slope of $12.45 per day. Total profit increased from $8,450 in January to $12,890 in March, representing a 52.5% growth. This positive trend may be attributed to increased marketing spend in Q1 or seasonal demand for electronics.
-
----
-
-### Sample Loom Video Script
-
-**Segment 1: Cleaned Data (30 seconds)**
-> "Here's my cleaned dataset. I started with 5,000 rows of messy order data. The main issues were 200 missing profit values, 50 incorrectly formatted dates, inconsistent category names, and 20 rows with negative quantities. I fixed these by filling missing profits with the median profit for each category, converting all dates to datetime format, standardizing category names to title case, and removing invalid quantity rows. The final cleaned dataset has 4,850 rows ready for analysis."
-
-**Segment 2: Python Code (90 seconds)**
-> "Let me show my Python code for Question 2, which asks which customer segment has the highest average profit for Electronics. First, I filtered the DataFrame to only Electronics category using `df[df['category'] == 'Electronics']`. Then I used `groupby('customer_segment')['profit'].mean()` to calculate average profit per segment. The result shows Corporate customers average $87.50 per order, which is much higher than Consumer at $42.30. I also created a bar chart with error bars to visualize the differences and show variability within each segment."
-
-**Segment 3: Tableau Dashboard (90 seconds)**
-> "Here's my Tableau dashboard published online. Page 1 is the Executive Summary. The key takeaway is that North region generates $45,200 in profit, while South shows a loss. The KPI cards show total sales of $412,000 and average profit per order of $28.50. When I use the date filter, all charts update. Page 2 is the Deep Dive. I've added a region filter here – when I select North, you can see the profit trend line spikes in February. The scatter plot shows that higher sales don't always mean higher profit – some high-sales orders actually lost money."
-
-**Segment 4: Reflection (30 seconds)**
-> "If I had one more week with this data, I would analyze why the South region is losing money. I'd look at shipping costs by region and product-level profitability to identify specific items to discontinue or reprice. I'd also build a forecasting model to predict next quarter's profit based on this upward trend."
+| Metric | Value |
+|--------|-------|
+| Slope | $12.45 per day |
+| January profit | $8,450 |
+| March profit | $12,890 |
+| Percent change | +52.5% |
+| Trend direction | Upward 📈 |
 
 ---
 
 ## Time Management Plan
 
-### 8-Hour Capstone Schedule
-
-| Day | Time | Task | Estimated Hours |
-|-----|------|------|-----------------|
+| Day | Time | Task | Hours |
+|-----|------|------|-------|
 | **Tuesday** | Evening | Attend kickoff, download data, initial exploration | 1.5 |
-| **Wednesday** | Morning/Afternoon | Data cleaning (Cells 4-13) | 2 |
-| **Thursday** | Morning | Answer Q1 and Q2 (Cells 14-21) | 1.5 |
-| **Thursday** | Afternoon | Answer Q3 (Cells 22-25) + export CSV | 1 |
+| **Wednesday** | Morning/Afternoon | Data cleaning (all 6 issues) | 2 |
+| **Thursday** | Morning | Answer Q1 and Q2 | 1.5 |
+| **Thursday** | Afternoon | Answer Q3 + export CSV | 1 |
 | **Friday** | Evening | Build Tableau dashboard (Page 1) | 1 |
 | **Saturday** | Morning | Build Tableau dashboard (Page 2) + actions | 1 |
-| **Saturday** | Afternoon | Record Loom video (practice + final) | 0.5 |
+| **Saturday** | Afternoon | Record video (practice + final) | 0.5 |
 | **Sunday** | Morning | Final checks, submit via GitHub | 0.5 |
 | **Total** | | | **9 hours** |
-
-**Pro tip:** Don't leave Tableau for Sunday night. Start Friday evening so you can ask questions in Saturday office hours.
 
 ---
 
 ## Final Checklist
 
-### Before You Submit (Go Through This!)
-
-#### Python Notebook
+### Python Notebook
 - [ ] Kernel restarted and "Run All" completes without errors
-- [ ] All 3 questions have code + chart + interpretation sentence
 - [ ] Missing profit values filled by category (not overall median)
-- [ ] Dates converted to datetime with `pd.to_datetime()`
-- [ ] Categories standardized (all title case)
+- [ ] Dates converted to datetime with `errors='coerce'`
+- [ ] Categories standardized to title case
+- [ ] "Small Business" mapped to "Corporate"
 - [ ] Negative/zero quantity rows removed
+- [ ] Missing regions filled with "Unknown"
+- [ ] All 3 questions have code + chart + interpretation
 - [ ] `cleaned_online_orders.csv` exported with `index=False`
-- [ ] Reflection section has 3-5 sentences
-- [ ] AI/code sources cited (if used)
 
-#### Tableau Dashboard
-- [ ] Dashboard has 2 pages (named "Executive Summary" and "Deep Dive")
-- [ ] Page 1 has: 3 KPI cards + 2 bar charts + 1 date filter
-- [ ] Page 2 has: 1 line chart + 1 scatter plot + 1 heatmap + 1 region filter
-- [ ] At least 1 dashboard action works (click bar → filter other charts)
-- [ ] Dashboard is published to Tableau Public
-- [ ] Link works in incognito mode (no login required)
+### Tableau Dashboard
+- [ ] Dashboard has 2 pages
+- [ ] Page 1: 3 KPI cards + 2 bar charts + date filter
+- [ ] Page 2: line chart + scatter plot + heatmap + region filter
+- [ ] At least 1 dashboard action works
+- [ ] Dashboard published to Tableau Public
 - [ ] Link saved in `tableau_link.txt`
 
-#### Loom Video
-- [ ] Video length: 3-5 minutes (not 2, not 6+)
-- [ ] Covers: cleaned data (30s) + Python code (1-2 min) + Tableau (1-2 min) + reflection (30s)
-- [ ] Audio is clear (no background noise)
-- [ ] Link is "Unlisted" (not "Public" and not "Private")
-- [ ] Link opens correctly
+### Video Presentation
+- [ ] Length: 3-5 minutes
+- [ ] Covers: cleaned data + Python code + Tableau + reflection
+- [ ] Audio clear, no background noise
 - [ ] Link saved in `loom_link.txt`
 
-#### Submission
-- [ ] All files in `submission_template/` folder:
-  - `yourname_capstone.ipynb` (replace "yourname" with actual name)
-  - `cleaned_online_orders.csv`
-  - `tableau_link.txt` (contains one URL)
-  - `loom_link.txt` (contains one URL)
-- [ ] Git commit message: `"submit capstone - Your Name"`
-- [ ] Pull Request opened against original repo
-- [ ] PR description contains your Loom link (so instructor can watch without downloading)
+### Submission
+- [ ] All files in `submission_template/` folder
+- [ ] Pull Request opened with Loom link in description
 
 ---
 
@@ -1113,107 +1070,29 @@ Change: +52.5%
 
 ### What You've Accomplished
 
-**Week 1: Python Fundamentals**
-- ✅ Write Python code from scratch
-- ✅ Use variables, lists, loops, and functions
-- ✅ Read and process CSV files
-
-**Week 2: Data Manipulation with Pandas**
-- ✅ Load and explore any dataset
-- ✅ Clean messy data (missing values, inconsistent text, wrong types)
-- ✅ Group, aggregate, and merge data
-- ✅ Export clean data for visualization
-
-**Week 3: Visualization & Tableau**
-- ✅ Create professional charts in Python (Matplotlib/Seaborn)
-- ✅ Build interactive dashboards in Tableau
-- ✅ Publish and share work online
-
-**Week 4: Capstone Project**
-- ✅ Apply all skills to a real-world messy dataset
-- ✅ Work independently from vague requirements
-- ✅ Present findings to stakeholders (via Loom)
-- ✅ Create a portfolio piece
+| Week | Skills Gained |
+|------|---------------|
+| 1 | Python fundamentals (variables, loops, functions, CSV reading) |
+| 2 | Pandas (data cleaning, grouping, aggregation, merging) |
+| 3 | Visualization (Matplotlib, Seaborn, Tableau dashboards) |
+| 4 | End-to-end project on real messy data |
 
 ### The Data Analytics Workflow (You Now Know)
 
 ```
-Step 1: Get Data
-    ↓ (CSV, Excel, database)
-Step 2: Clean Data (Pandas)
-    ↓ (handle missing, fix types, remove duplicates)
-Step 3: Explore & Analyze (Pandas + Python plots)
-    ↓ (groupby, aggregate, find patterns)
-Step 4: Visualize & Present (Tableau)
-    ↓ (dashboards, filters, actions)
-Step 5: Share Insights (Loom, email, presentation)
-    ↓
-Your Manager Makes a Decision
+Get Data → Clean Data → Explore → Visualize → Present → Decision
 ```
 
 ### What's Next After the Pilot?
 
-**Your Academy's Paid Programs:**
+| Course | Topics | Duration |
+|--------|--------|----------|
+| Data Analytics Pro | SQL, advanced statistics, A/B testing | 6 weeks |
+| Applied Data Science | Machine learning, scikit-learn | 8 weeks |
+| Data Engineering | ETL pipelines, Airflow, cloud | 10 weeks |
 
-| Course | Topics | Prerequisite |
-|--------|--------|--------------|
-| **Data Analytics Pro** (6 weeks) | SQL, advanced statistics, A/B testing, Tableau LOD | This pilot |
-| **Applied Data Science** (8 weeks) | Machine learning, scikit-learn, regression, classification | Data Analytics Pro |
-| **Data Engineering** (10 weeks) | ETL pipelines, Airflow, dbt, cloud (AWS/GCP) | Applied Data Science |
 
-**20% discount** for all pilot graduates.
-
-### Final Words from Instructor
-
-> "You started Week 1 not knowing what a variable was. You now clean messy datasets, write Python scripts, build Tableau dashboards, and present insights like a junior analyst.
-
-> **That's not nothing. That's a career skill.**
-
-> The capstone isn't just a grade – it's your first portfolio piece. Put the dashboard link on your LinkedIn. Talk about it in interviews. 'I took a messy dataset of 5,000 orders, cleaned it, found that the Corporate segment drives 60% of Electronics profit, and built an interactive dashboard for management.'
-
-> **You belong in this field.**
-
-> Thank you for being part of the pilot. Your feedback will shape this course for future students. Now go submit that capstone – and then celebrate. You've earned it."
-
----
-
-## Office Hours & Support (Final Week)
-
-- **Slack:** `#capstone-help` (instructor response within 4 hours)
-- **Office hours:** Saturday 11 AM–1 PM ET (extended for capstone)
-- **Emergency:** augamos@live.com (only for tech issues)
-
----
 
 **End of Week 4 Class Notes**
 
-*Save this document. Then go finish your capstone.*
-
----
-
-## Complete Week 4 Notes Summary
-
-| Section | Key Topics |
-|---------|------------|
-| Course Review (Weeks 1-3) | Python, Pandas, Matplotlib, Seaborn, Tableau |
-| Capstone Overview | Scenario, dataset, 3 questions, 4 deliverables |
-| The New Dataset | 5,000 rows, 8 columns, known issues |
-| Step-by-Step Guide | 9 steps from setup to submission |
-| Grading Rubric | 40 points, 70% to pass |
-| Common Pitfalls | 7 mistakes and how to avoid them |
-| Sample Solutions | Q1, Q2, Q3 answers + video script |
-| Time Management | 9-hour plan across 5 days |
-| Final Checklist | 30+ items to verify before submitting |
-| Key Takeaways | What you learned + what's next |
-
-**Total length:** ~6,000 words, ~50 code blocks, complete capstone guide
-
----
-
-**Would you like me to generate any of the following to complete your course materials:**
-
-1. **Exercise notebooks for Week 3** (`exercise1_charts_from_cleaned_data.ipynb`)
-2. **Tableau Guide** (`tableau_guide.md` with step-by-step screenshots described)
-3. **Sample `online_orders.csv`** (the messy dataset for Week 4 capstone)
-4. **Instructor Grading Guide** (with answer key and common student mistakes)
-5. **Certificate of Completion template** (for pilot graduates)
+*Save this document. Then go finish your capstone. You've got this!* 🚀
