@@ -371,6 +371,12 @@ df_clean['profit'] = df_clean.groupby('category')['profit'].transform(
     lambda x: x.fillna(x.median())
 )
 
+Alternative:
+category_medians = df_clean.groupby('category')['profit'].median()
+df_clean['profit'].fillna(df_clean['category'].map(category_medians))
+df_clean['profit'] = df_clean['profit'].fillna(mapped_medians)
+
+
 # Verify no more missing
 print(f"\nMissing profit after fill: {df_clean['profit'].isnull().sum()}")
 ```
