@@ -373,7 +373,7 @@ df_clean['profit'] = df_clean.groupby('category')['profit'].transform(
 
 Alternative:
 category_medians = df_clean.groupby('category')['profit'].median()
-df_clean['profit'].fillna(df_clean['category'].map(category_medians)) #goes through rows and maps each row to the value of its category
+mapped_medians = df_clean['category'].map(category_medians)) #goes through rows and maps each row to the value of its category
 df_clean['profit'] = df_clean['profit'].fillna(mapped_medians)
 
 
