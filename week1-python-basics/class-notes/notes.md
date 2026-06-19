@@ -206,7 +206,7 @@ Index:   -5     -4    -3     -2     -1
 ```python
 prices = [100, 250, 75, 400, 120]
 
-# From index 1 up to (but not including) 3
+# From index 1 up to (but not including) 3 #The length of a sliced sequence is simply the stop index minus the start index (\(start - stop\))
 print(prices[1:3])    # [250, 75]
 
 # From start up to index 3 (not including)
