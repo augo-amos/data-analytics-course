@@ -1,4 +1,4 @@
-# Setup Guide: Foundations of Data Analytics Pilot
+# Setup Guide: Data Foundations
 
 **Time required:** 45–60 minutes (first time)  
 **Difficulty:** No experience needed – follow every click  
