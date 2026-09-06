@@ -1,4 +1,4 @@
-# Syllabus: Foundations of Data Analytics (Pilot Program)
+# Syllabus: Data Foundations Program
 
 **Academy:** Decodemy  
 **Duration:** 4 weeks  
