@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-CC%20BY--NC-blue)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 
-# Data Analytics Pilot Program
+# Data Foundations Program
 
 **Duration:** 4 weeks  
 **Instructor:** Amos Augo  
