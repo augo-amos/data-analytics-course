@@ -469,7 +469,7 @@ df[df.isnull().all(axis=1)]
 # Strategy: Fill with median profit OF THE SAME CATEGORY
 
 # Step 1: Calculate median profit for each category
-category_median = df.groupby('category')['profit'].median()
+category_medians = df.groupby('category')['profit'].median()
 
 # Step 2: Fill missing using these medians
 df['profit'] = df['profit'].fillna(df['category'].map(category_medians))
