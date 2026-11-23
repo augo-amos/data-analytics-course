@@ -472,13 +472,9 @@ df[df.isnull().all(axis=1)]
 category_median = df.groupby('category')['profit'].median()
 
 # Step 2: Fill missing using these medians
-df['profit'] = df.groupby('category')['profit'].transform(
-    lambda x: x.fillna(x.median())
-)
-# Alternative 1
 df['profit'] = df['profit'].fillna(df['category'].map(category_medians))
 
-# ALternative 2
+# ALternative
 median_by_category = df.groupby('category')['profit'].transform('median')
 df['profit'] = df['profit'].fillna(median_by_category)
 
