@@ -460,7 +460,7 @@ df[df.isnull().all(axis=1)]
 | Fill with constant | Placeholder needed | `df.fillna(0)` |
 | Fill with mean | Normal distribution | `df.fillna(df['col'].mean())` |
 | Fill with median | Skewed data | `df.fillna(df['col'].median())` |
-| Fill forward | Time series | `df.fillna(method='ffill')` |
+| Fill forward | Time series | `df.fillna(method='ffill')` or `df.ffill()` |
 
 ### Filling Missing Profit (Real Example)
 
