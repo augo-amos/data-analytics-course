@@ -562,6 +562,20 @@ df = df[df['sales'] <= upper_limit]
 mean = df['profit'].mean()
 std = df['profit'].std()
 df = df[(df['profit'] >= mean - 3*std) & (df['profit'] <= mean + 3*std)]
+
+# IQR Method (Best for Skewed Data like Profit, Sales, or Income)
+q1 = df['profit'].quantile(0.25)
+q3 = df['profit'].quantile(0.75)
+iqr = q3 - q1
+
+lower = q1 - 1.5 * iqr
+upper = q3 + 1.5 * iqr
+
+# Option A: Drop outlier rows
+df_clean = df[(df['profit'] >= lower) & (df['profit'] <= upper)]
+
+# Option B: Cap (clip) extreme values instead of dropping rows
+df['profit_capped'] = df['profit'].clip(lower=lower, upper=upper)
 ```
 
 ### Complete Data Cleaning Pipeline
