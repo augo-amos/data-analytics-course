@@ -475,6 +475,12 @@ category_median = df.groupby('category')['profit'].median()
 df['profit'] = df.groupby('category')['profit'].transform(
     lambda x: x.fillna(x.median())
 )
+# Alternative 1
+df['profit'] = df['profit'].fillna(df['category'].map(category_medians))
+
+# ALternative 2
+median_by_category = df.groupby('category')['profit'].transform('median')
+df['profit'] = df['profit'].fillna(median_by_category)
 
 # Verify it worked
 print(df['profit'].isnull().sum())  # Should be 0
